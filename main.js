@@ -27,6 +27,14 @@ class Person {
     }
 }
 
+console.log('Person Object v1 :');
+const ada = new Person('Aadaa', '34');
+console.log(ada.name);
+console.log(ada.age);
+ada.speak();
+console.log((`_`).repeat(40));
+console.log('\n');
+
 class PC {
     constructor(type, operatingsystem, performance) {
         this.type = type;
@@ -53,6 +61,16 @@ class PC {
         console.log(`you did something on your ${this.type}`);
     }
 }
+
+console.log('PC Object v1 :');
+const myPC = new PC('macair', 'mac', 'm1');
+myPC.dosomething();
+myPC.poweron();
+myPC.poweroff();
+console.log((`_`).repeat(40));
+console.log('\n');
+
+
 class appliance {
     constructor(refrigator, sofa, table, chair, tv, bookcase, drier, washingmachine) {
         this.refrigator = refrigator;
@@ -87,17 +105,11 @@ class calendar {
     }
 }
 
-const ada = new Person('Aadaa', '34');
-console.log(ada.name);
-console.log(ada.age);
-const myPC = new PC('macair', 'mac', 'm1');
 const cal = new calendar(2021, 10, 'Wed', 3);
-
-ada.speak();
-myPC.dosomething();
-myPC.poweron();
-myPC.poweroff();
 console.log(cal.getstring());
+console.log((`_`).repeat(40));
+console.log('\n');
+
 
 // 2. Getter and Setters
 class User {
@@ -121,10 +133,9 @@ class User {
 
 const user1 = new User('Aadaa', 'Bilgee', -1);
 console.log(user1.age);
+console.log((`_`).repeat(40));
+console.log('\n');
 
-console.log('-----------**-----------');
-console.log('Coffee Blending Machine v1');
-console.log('-----------**-----------');
 class coffeBendingMachine {
     constructor(numberOfCoffee, coin) {
         this.numberOfCoffee = numberOfCoffee;
@@ -167,7 +178,12 @@ class coffeBendingMachine {
     }
 }
 const coffemachine1 = new coffeBendingMachine(3, 4);
+
+console.log('Coffee Blending Machine v1 :');
 coffemachine1.putcoin;
+console.log((`_`).repeat(40));
+console.log('\n');
+
 
 /*
 // 3. Fields (public, private)
@@ -190,3 +206,93 @@ class Article {
     }
 }
 */
+
+// Some 'array' methods
+const items = [
+    {name: 'bike',      price: 100},
+    {name: 'TV',        price: 200},
+    {name: 'Album',     price: 50},
+    {name: 'Book',      price: 1000},
+    {name: 'Phone',     price: 10},
+    {name: 'Computer',  price: 5},
+    {name: 'Keyboard',  price: 25},
+]
+
+console.log('Some "array" methods: ');
+console.log(items);
+
+//      1 . Filter method:   array.filter((variable) => {function})'
+console.log('\t "filter" method:');
+const filtered_items = items.filter((item) => {return item.price < 100});
+console.log(filtered_items);
+const findByName = items.filter((item) => {return item.name === 'Phone'});
+console.log(findByName);
+console.log('\n');
+
+//      2. Loop method:      array.forEach((variable) => {function})
+console.log('\t "forEach" method:');
+items.forEach((item) => {console.log(item);console.log(item.name);console.log('====')});
+console.log('\n');
+
+//      3. Some method:      array.some((variable) => {function}) !!this method returns boolean!!
+console.log('\t "some" method:');
+const hasInExpensiveItems = items.some((item) => {return item.price <= 100});
+console.log(hasInExpensiveItems);
+const hasInExpensiveItems1 = items.some((item) => {return item.price <= 0});
+console.log(hasInExpensiveItems1);
+console.log('\n');
+
+//      4. Every method:     array.every((variable) => {function}) !!almost same as 'some' method but every condtions satisfied for items!!
+console.log('\t "every" method:');
+const hasInExpensiveItems2 = items.every((item) => {return item.price <= 1000});
+console.log(hasInExpensiveItems2);
+const hasInExpensiveItems3 = items.every((item) => {return item.price <= 500});
+console.log(hasInExpensiveItems3);
+console.log('\n')
+
+//      5. Reduce method:    array.reduce((previousValue, currentValue, currentIndex, array) = {}, initialValue)
+console.log('\t "reduce" method:  can be useful but need more study!');
+const total = items.reduce((currTotal, currItem) => {return currItem.price + currTotal}, 0);
+console.log(total);
+console.log('\n');
+
+//      6. include method:   array.include(argument)
+console.log('\t "include" method:');
+const items1 = [1, 2, 3 , 4, 5];
+const includesSomething = items1.includes(1);
+const includesSomething1 = items1.includes(6);
+console.log(includesSomething);
+console.log(includesSomething1);
+console.log('\n');
+
+console.log('_'.repeat(40));
+
+// function -> default parameters
+function someFunction(name, work){
+    console.log(`my name is ${name}, and i am doing ${work}!`);
+}
+someFunction('aDa');
+
+console.log('\n')
+function someFunction1(name, work='customDefault'){
+    console.log(`my name is ${name}, and i am doing ${work}!`);
+}
+someFunction1('aDa');
+console.log('\n')
+
+function someFunction2(name, work){
+    work = (typeof work !== 'undefined') ?  work : 'someDefault';
+    console.log(`my name is ${name}, and i am doing ${work}!`);
+}
+someFunction2('aDa');
+console.log('\n')
+
+console.log('_'.repeat(40));
+
+// Rest parameters (EC6)
+function f(...args) {
+    for(let i = 0; args.length; i++){
+        console.log(args[i]);
+    }
+}
+f1('hi', 'this', 'is', 'fun', '!');
