@@ -291,8 +291,8 @@ console.log('_'.repeat(40));
 
 // Rest parameters (EC6)
 function f(...args) {
-    for(let i = 0; args.length; i++){
+    for(let i = 0; i < args.length; i++){
         console.log(args[i]);
     }
 }
-f1('hi', 'this', 'is', 'fun', '!');
+f('hi', 'this', 'is', 'fun', '!');
