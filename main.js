@@ -106,6 +106,7 @@ class calendar {
 
 const cal = new calendar(2021, 10, 'Wed', 3);
 console.log(cal.getstring());
+console.log(cal);
 console.log((`_`).repeat(40));
 console.log('\n');
 
@@ -260,3 +261,32 @@ console.log(triangle instanceof Rectangle);
 console.log(triangle instanceof Triangle);
 console.log(triangle instanceof Shape);
 console.log(triangle instanceof Object);
+
+// Class Test
+
+let param1 = 10;
+let param2 = 'foo';
+let param3 = 200;
+let param4 = 'bar';
+
+let props = {options: { op1: param2, op3: param4 }};
+
+console.log('Object props');
+console.log(props);
+
+class Test {
+  
+  constructor({id = 'defaultId', options = { op2:'0'}} = {}){
+    this.id = id;
+    this.options = options;
+  }
+  
+}
+
+let test = new Test(props);
+console.log('Class test');
+console.log(test.id);
+console.log(test.options);
+console.log(test.options.op2);
+let test1 = new Test()
+console.log(test1)
