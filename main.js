@@ -296,4 +296,3 @@ function f(...args) {
     }
 }
 f('hi', 'this', 'is', 'fun', '!');
-// write oneline
