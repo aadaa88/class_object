@@ -3,7 +3,6 @@
 /* jshint browser: true */
 /* jslint node: true */
 /* jshint strict: false */
-
 'use strict';
 
 // Object-oriented programming
@@ -204,95 +203,60 @@ class Article {
     constructor(articleNumber) {
         this.articleNumber = articleNumber;
     }
-}
-*/
-
-// Some 'array' methods
-const items = [
-    {name: 'bike',      price: 100},
-    {name: 'TV',        price: 200},
-    {name: 'Album',     price: 50},
-    {name: 'Book',      price: 1000},
-    {name: 'Phone',     price: 10},
-    {name: 'Computer',  price: 5},
-    {name: 'Keyboard',  price: 25},
-]
-
-console.log('Some "array" methods: ');
-console.log(items);
-
-//      1 . Filter method:   array.filter((variable) => {function})'
-console.log('\t "filter" method:');
-const filtered_items = items.filter((item) => {return item.price < 100});
-console.log(filtered_items);
-const findByName = items.filter((item) => {return item.name === 'Phone'});
-console.log(findByName);
-console.log('\n');
-
-//      2. Loop method:      array.forEach((variable) => {function})
-console.log('\t "forEach" method:');
-items.forEach((item) => {console.log(item);console.log(item.name);console.log('====')});
-console.log('\n');
-
-//      3. Some method:      array.some((variable) => {function}) !!this method returns boolean!!
-console.log('\t "some" method:');
-const hasInExpensiveItems = items.some((item) => {return item.price <= 100});
-console.log(hasInExpensiveItems);
-const hasInExpensiveItems1 = items.some((item) => {return item.price <= 0});
-console.log(hasInExpensiveItems1);
-console.log('\n');
-
-//      4. Every method:     array.every((variable) => {function}) !!almost same as 'some' method but every condtions satisfied for items!!
-console.log('\t "every" method:');
-const hasInExpensiveItems2 = items.every((item) => {return item.price <= 1000});
-console.log(hasInExpensiveItems2);
-const hasInExpensiveItems3 = items.every((item) => {return item.price <= 500});
-console.log(hasInExpensiveItems3);
-console.log('\n')
-
-//      5. Reduce method:    array.reduce((previousValue, currentValue, currentIndex, array) = {}, initialValue)
-console.log('\t "reduce" method:  can be useful but need more study!');
-const total = items.reduce((currTotal, currItem) => {return currItem.price + currTotal}, 0);
-console.log(total);
-console.log('\n');
-
-//      6. include method:   array.include(argument)
-console.log('\t "include" method:');
-const items1 = [1, 2, 3 , 4, 5];
-const includesSomething = items1.includes(1);
-const includesSomething1 = items1.includes(6);
-console.log(includesSomething);
-console.log(includesSomething1);
-console.log('\n');
-
-console.log('_'.repeat(40));
-
-// function -> default parameters
-function someFunction(name, work){
-    console.log(`my name is ${name}, and i am doing ${work}!`);
-}
-someFunction('aDa');
-
-console.log('\n')
-function someFunction1(name, work='customDefault'){
-    console.log(`my name is ${name}, and i am doing ${work}!`);
-}
-someFunction1('aDa');
-console.log('\n')
-
-function someFunction2(name, work){
-    work = (typeof work !== 'undefined') ?  work : 'someDefault';
-    console.log(`my name is ${name}, and i am doing ${work}!`);
-}
-someFunction2('aDa');
-console.log('\n')
-
-console.log('_'.repeat(40));
-
-// Rest parameters (EC6)
-function f(...args) {
-    for(let i = 0; i < args.length; i++){
-        console.log(args[i]);
+    static printPublisher(){
+        console.log(Article.publisher);
     }
 }
-f('hi', 'this', 'is', 'fun', '!');
+const article1 = new Article(1);
+const article2  = new Article(2);
+
+console.log(article1.publisher); // return: undefined;
+console.log(Article.publisher); // return: 'Dream Coding';
+Article.printPublisher(); // return: 'Dream Coding';
+*/
+
+
+// 5. Inheritance 
+//      a way for one class extend to another class.
+class Shape {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    }
+
+    draw() {
+        console.log(`drawing ${this.color} color! try to remove this sentence.`);
+    }
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+class Rectangle extends Shape{}
+
+const rect = new Rectangle(10, 20, 'red');
+rect.draw();
+console.log(rect.getArea());
+class Triangle extends Shape{
+    // overriding!
+    getArea(){
+        return this.width * this.height / 2;
+    }
+    drawShape(){
+        console.log('🔺')
+        super.draw();
+    }
+} 
+const triangle = new Triangle(10, 20, 'blue');
+triangle.draw();
+triangle.drawShape();
+console.log(triangle.getArea());
+
+// 6. Class checking: instanceof
+
+console.log(rect instanceof Rectangle);
+console.log(triangle instanceof Rectangle);
+console.log(triangle instanceof Triangle);
+console.log(triangle instanceof Shape);
+console.log(triangle instanceof Object);
